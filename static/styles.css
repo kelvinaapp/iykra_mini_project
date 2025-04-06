@@ -73,11 +73,11 @@ body {
 }
 
 /* Event hover effect */
-.fc-event:hover {
+/* .fc-event:hover {
     opacity: 0.8;
     transform: scale(1.05);
     transition: all 0.2s ease;
-}
+} */
 
 .service-count-badge {
     display: inline-block;

@@ -18,7 +18,7 @@ app = FastAPI()
 # CORS middleware with specific origin for development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Frontend development server
+    allow_origins=["*"],  # Allow all origins in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -103,6 +103,12 @@ async def get_predictions_by_date(date: str):
 @app.post("/api/send-notification", tags=["Notifications"])
 async def send_notification(customers: List[Customer]):
     
+    # Check if notification API keys are available
+    if not NOTIF_API_KEY or not NOTIF_BASE_URL:
+        return JSONResponse(
+            status_code=503,
+            content={"message": "Notification service not configured"})
+    
     for customer in customers:
         
         phone_number = customer.phone_number
@@ -146,6 +152,15 @@ async def send_notification(customers: List[Customer]):
     
     return {"message": "Notification sent successfully"}
 
+# Health check endpoint for Cloud Run
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    
+    # Get port from environment variable or default to 8080
+    port = int(os.environ.get("PORT", 8080))
+    
+    uvicorn.run(app, host="0.0.0.0", port=port)
