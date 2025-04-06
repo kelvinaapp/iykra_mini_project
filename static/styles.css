@@ -1,0 +1,174 @@
+body {
+    background-color: #f0f5f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #3e4c59;
+}
+
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+}
+
+.card-header {
+    font-weight: 500;
+    background-color: #c9d6df;
+    color: #3e4c59;
+    border-bottom: none;
+    padding: 12px 16px;
+}
+
+#calendar {
+    height: 600px;
+}
+
+.fc-daygrid-day-number {
+    font-weight: 500;
+    color: #3e4c59;
+}
+
+/* Calendar day hover effect */
+.fc-daygrid-day:hover {
+    background-color: #e3e9ec !important;
+    cursor: pointer;
+}
+
+/* Calendar day click effect */
+.fc-daygrid-day.clicked {
+    background-color: #c9d6df !important;
+}
+
+.fc-button-primary {
+    background-color: #52616b !important;
+    border-color: #52616b !important;
+    color: #fff !important;
+}
+
+.fc-button-primary:hover {
+    background-color: #414e58 !important;
+    border-color: #414e58 !important;
+}
+
+.fc-today-button {
+    background-color: #1e2022 !important;
+    border-color: #1e2022 !important;
+}
+
+.fc-today-button:hover {
+    background-color: #0d0e0f !important;
+    border-color: #0d0e0f !important;
+}
+
+.fc-daygrid-day.fc-day-today {
+    background-color: #e3e9ec !important;
+}
+
+.fc-event {
+    cursor: pointer;
+    border-radius: 4px;
+    border: none !important;
+}
+
+/* Event hover effect */
+.fc-event:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+.service-count-badge {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    background-color: #52616b;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.customer-item {
+    border-left: 4px solid #52616b;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f5f9;
+    border-radius: 4px;
+}
+
+.spare-part-item {
+    margin-left: 20px;
+    font-size: 0.9rem;
+}
+
+.phone-number {
+    font-weight: 500;
+}
+
+#today-count, #week-count, #month-count {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #52616b;
+}
+
+.overview-card {
+    text-align: center;
+    padding: 15px;
+}
+
+.overview-title {
+    font-size: 0.9rem;
+    color: #52616b;
+    margin-bottom: 5px;
+}
+
+#service-details {
+    max-height: 440px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+#service-details::-webkit-scrollbar {
+    width: 6px;
+}
+
+#service-details::-webkit-scrollbar-track {
+    background: #f0f5f9;
+    border-radius: 10px;
+}
+
+#service-details::-webkit-scrollbar-thumb {
+    background: #c9d6df;
+    border-radius: 10px;
+}
+
+#service-details::-webkit-scrollbar-thumb:hover {
+    background: #52616b;
+}
+
+/* Title and subtitle styling */
+.dashboard-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0.2rem;
+    letter-spacing: -0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-subtitle {
+    font-size: 1.1rem;
+    color: #52616b;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.title-container {
+    background-color: rgba(201, 214, 223, 0.3);
+    padding: 1.5rem 0;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
