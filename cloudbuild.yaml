@@ -31,8 +31,6 @@ steps:
       - '0'
       - '--max-instances'
       - '10'
-      - '--timeout'
-      - '300s'
 
 images:
   - 'gcr.io/$PROJECT_ID/motorcycle-service-prediction:latest'
