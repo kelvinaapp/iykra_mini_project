@@ -66,6 +66,23 @@ body {
     background-color: #e3e9ec !important;
 }
 
+/* Disabled past dates styling */
+.fc-day-disabled {
+    background-color: #f8f8f8 !important;
+    opacity: 0.6;
+    cursor: not-allowed !important;
+}
+
+.fc-day-disabled .fc-daygrid-day-number {
+    color: #aaa !important;
+    text-decoration: line-through;
+}
+
+.fc-day-disabled:hover {
+    background-color: #f8f8f8 !important;
+    cursor: not-allowed !important;
+}
+
 .fc-event {
     cursor: pointer;
     border-radius: 4px;

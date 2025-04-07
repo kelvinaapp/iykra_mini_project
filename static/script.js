@@ -9,13 +9,18 @@ document.addEventListener('DOMContentLoaded', function() {
             right: ''  // Removed timeGridWeek view
         },
         eventClick: function(info) {
+            // Check if the date is in the past
+            const clickedDate = info.event.start;
+            if (isPastDate(clickedDate)) {
+                return; // Don't do anything for past dates
+            }
+            
             // Remove clicked class from all days
             document.querySelectorAll('.fc-daygrid-day').forEach(day => {
                 day.classList.remove('clicked');
             });
             
             // Add clicked class to the clicked day
-            const clickedDate = info.event.start;
             const dateStr = formatDate(clickedDate);
             const dayEl = document.querySelector(`.fc-day[data-date="${dateStr}"]`);
             if (dayEl) {
@@ -25,6 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
             fetchServiceDetails(info.event.startStr);
         },
         dateClick: function(info) {
+            // Check if the date is in the past
+            const clickedDate = new Date(info.dateStr);
+            if (isPastDate(clickedDate)) {
+                return; // Don't do anything for past dates
+            }
+            
             // Remove clicked class from all days
             document.querySelectorAll('.fc-daygrid-day').forEach(day => {
                 day.classList.remove('clicked');
@@ -39,6 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return {
                 html: `<div class="service-count-badge">${arg.event.extendedProps.count}</div>`
             };
+        },
+        dayCellDidMount: function(info) {
+            // Disable past dates
+            if (isPastDate(info.date)) {
+                info.el.classList.add('fc-day-disabled');
+            }
         }
     });
     
@@ -50,6 +67,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set today's date in the sidebar
     const today = new Date();
     fetchServiceDetails(formatDate(today));
+    
+    // Function to check if a date is in the past
+    function isPastDate(date) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Set to beginning of day for accurate comparison
+        const checkDate = new Date(date);
+        checkDate.setHours(0, 0, 0, 0);
+        return checkDate < today;
+    }
     
     // Function to fetch prediction data from the API
     function fetchPredictionData() {
@@ -96,10 +122,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (todayEl) {
                     todayEl.classList.add('clicked');
                 }
+                
+                // Apply disabled style to past dates
+                applyPastDateStyling();
             })
             .catch(error => {
                 console.error('Error fetching prediction data:', error);
             });
+    }
+    
+    // Function to apply styling to past dates
+    function applyPastDateStyling() {
+        document.querySelectorAll('.fc-daygrid-day').forEach(dayEl => {
+            const dateStr = dayEl.getAttribute('data-date');
+            if (dateStr) {
+                const date = new Date(dateStr);
+                if (isPastDate(date)) {
+                    dayEl.classList.add('fc-day-disabled');
+                }
+            }
+        });
     }
     
     // Function to update overview counts (today, week, month)
@@ -152,6 +194,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     html += `
                         <div class="customer-item">
                             <div class="phone-number">${prediction.phone_number}</div>
+                            <div class="usage-info mt-1">
+                                <span class="badge bg-light text-dark">
+                                    <i class="fas fa-tachometer-alt"></i> ${prediction.avg_km_per_month} km/month
+                                </span>
+                            </div>
                             <div class="spare-parts mt-2">
                                 <div class="text-muted small">Spare Parts:</div>
                     `;
