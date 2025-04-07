@@ -33,10 +33,6 @@ steps:
       - '10'
       - '--timeout'
       - '300s'
-      - '--startup-cpu-boost'
-      - '--cpu-throttling'
-      - '--startup-cpu'
-      - '2'
 
 images:
   - 'gcr.io/$PROJECT_ID/motorcycle-service-prediction:latest'
