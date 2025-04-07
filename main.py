@@ -258,6 +258,6 @@ if __name__ == "__main__":
     import uvicorn
     
     # Get port from environment variable or default to 8080
-    port = int(os.environ.get("PORT", 8080))
+    port = int(os.environ.get("PORT", 8000))
     
     uvicorn.run(app, host="0.0.0.0", port=port)
