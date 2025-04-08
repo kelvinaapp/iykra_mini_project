@@ -30,7 +30,7 @@ steps:
       - '--min-instances'
       - '0'
       - '--max-instances'
-      - '10'
+      - '5'
 
 images:
   - 'gcr.io/$PROJECT_ID/motorcycle-service-prediction:latest'
