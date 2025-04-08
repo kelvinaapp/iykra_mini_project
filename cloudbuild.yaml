@@ -24,9 +24,9 @@ steps:
       - '--port'
       - '8080'
       - '--memory'
-      - '512Mi'
+      - '1Gi'
       - '--cpu'
-      - '1'
+      - '2'
       - '--min-instances'
       - '0'
       - '--max-instances'
@@ -37,4 +37,3 @@ images:
 
 options:
   logging: CLOUD_LOGGING_ONLY
-
